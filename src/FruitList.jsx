@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   FlatList,
   Text,
   StyleSheet,
+  RefreshControl,
 } from 'react-native';
+import PullToRefreshFlatList from './components/PullToRefreshFlatList';
+import RefreshHeader from './components/RefreshHeader';
 
 const fruits = [
   'Apple',
@@ -35,6 +38,9 @@ const styles = StyleSheet.create({
 });
 
 function FruitList() {
+  const [refreshing, setRefreshing] = useState(false);
+  const [percent, setPercent] = useState(0);
+
   function renderItem({ item }) {
     return (
       <View key={item} style={styles.row}>
@@ -43,16 +49,46 @@ function FruitList() {
     );
   }
 
+  function onRefresh() {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1000);
+  }
+
   return (
-    <FlatList
+    // <FlatList
+  //      data={fruits}
+  //      renderItem={renderItem}
+  //      style={[
+  // styles.flatlist,
+  // {
+  // paddingTop: 20,
+  // },
+  //      ]}
+  //      refreshControl={(
+  // <RefreshControl
+  // refreshing={refreshing}
+  // onRefresh={onRefresh}
+  // />
+  //      )}
+    // />
+    <PullToRefreshFlatList
+      isRefreshing={refreshing}
+      onRefresh={onRefresh}
+      onPercentageChange={(percentage) => {
+        setPercent(percentage / 2);
+      }}
+      RefreshHeader={(
+        <RefreshHeader
+          progress={percent}
+          shouldPlayAnimation={refreshing}
+        />
+       )}
+      refreshingHeight={100}
       data={fruits}
       renderItem={renderItem}
-      style={[
-        styles.flatlist,
-        {
-          paddingTop: 20,
-        },
-      ]}
+      contentContainerStyle={styles.flatlist}
     />
   );
 }
