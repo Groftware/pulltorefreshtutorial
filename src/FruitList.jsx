@@ -1,6 +1,9 @@
 import React from 'react';
 import {
-  View, FlatList, Text, StyleSheet,
+  View,
+  FlatList,
+  Text,
+  StyleSheet,
 } from 'react-native';
 
 const fruits = [
@@ -23,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     borderBottomWidth: 3,
-    borderBottomColor: '#000',
+    borderBottomColor: 'black',
   },
   rowTitle: {
     fontSize: 30,
