@@ -19,7 +19,7 @@ const fruits = [
 
 const styles = StyleSheet.create({
   flatlist: {
-    backgroundColor: 'white',
+
   },
   row: {
     height: 100,
