@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, SafeAreaView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import FruitList from './src/FruitList';
 
 
@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FruitList />
-    </SafeAreaView>
+    </View>
   );
 }
